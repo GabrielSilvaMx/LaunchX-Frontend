@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pastelería Glass</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.6.8/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.6.8/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.6.8/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.6.8/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.6.8/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.6.8/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.6.8/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/9.6.8/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.6.8/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.6.8/firebase-performance-compat.js"></script>
+    <!--
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <style media="screen">
+        body {
+            background: #ECEFF1;
+            color: rgba(0,0,0,0.87);
+            font-family: Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #message {
+            background: white;
+            max-width: 360px;
+            margin: 100px auto 16px;
+            padding: 32px 24px;
+            border-radius: 3px;
+        }
+
+            #message h2 {
+                color: #ffa100;
+                font-weight: bold;
+                font-size: 16px;
+                margin: 0 0 8px;
+            }
+
+            #message h1 {
+                font-size: 22px;
+                font-weight: 300;
+                color: rgba(0,0,0,0.6);
+                margin: 0 0 16px;
+            }
+
+            #message p {
+                line-height: 140%;
+                margin: 16px 0 24px;
+                font-size: 14px;
+            }
+
+            #message a {
+                display: block;
+                text-align: center;
+                background: #039be5;
+                text-transform: uppercase;
+                text-decoration: none;
+                color: white;
+                padding: 16px;
+                border-radius: 4px;
+            }
+
+            #message, #message a {
+                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            }
+
+        #load {
+            color: rgba(0,0,0,0.4);
+            text-align: center;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            body, #message {
+                margin-top: 0;
+                background: white;
+                box-shadow: none;
+            }
+
+            body {
+                border-top: 16px solid #ffa100;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="assets/img/glass_pasteleria.png" alt="Pastelería Glass" width="140" height="110" />
+        </a>
+    </header>
+    <div>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="productos">
+        <h2>Cantidad de Sabores disponibles</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="center">Producto</th>
+                    <th align="center">Disponible</th>
+                    <th align="center">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Chocolate</td>
+                    <td>800 gr en stock</td>
+                    <td><a href="#">Pedir insumos</a></td>
+                </tr>
+                <tr>
+                    <td>Fresa</td>
+                    <td>0 gr en stock</td>
+                    <td><a href="#">Pedir insumos</a></td>
+                </tr>
+                <tr>
+                    <td>Vainilla</td>
+                    <td>0 gr en stock</td>
+                    <td><a href="#">Pedir insumos</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="productos">
+        <h2>Cantidad de adornos disponibles</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="center">Producto</th>
+                    <th align="center">Disponible</th>
+                    <th align="center">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Velas</td>
+                    <td>0 unidades en stock</td>
+                    <td><a href="#">Pedir insumos</a></td>
+                </tr>
+                <tr>
+                    <td>Crema chantilly</td>
+                    <td>500 gr en stock</td>
+                    <td><a href="#">Pedir insumos</a></td>
+                </tr>
+                <tr>
+                    <td>Fresas</td>
+                    <td>0 gr en stock</td>
+                    <td><a href="#">Pedir insumos</a></td>
+                </tr>
+                <tr>
+                    <td>Duraznos</td>
+                    <td>0 gr en stock</td>
+                    <td><a href="#">Pedir insumos</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="productos">
+        <h2>Pedidos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="center"># Orden</th>
+                    <th align="center">Fecha solicitud</th>
+                    <th align="center">Producto</th>
+                    <th align="center">Datos del cliente</th>
+                    <th align="center">Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="center">GL-2022-060</td>
+                    <td align="center">14/02/2022</td>
+                    <td>Pastel romántico</td>
+                    <td>
+                        Alejandra Fuentes
+                        <br />
+                        Tel. 55 63852471
+                        <br />
+                        ale_bonita@hotmail.com
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Sabor seleccionado: Fresas</li>
+                            <li>Adorno: Fresas</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">GL-2022-072</td>
+                    <td align="center">14/02/2022</td>
+                    <td>Pastel tiramizú</td>
+                    <td>
+                        Gabriel Silva
+                        <br />
+                        Tel. 55 22854132
+                        <br />
+                        gabo_s@gmail.com
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Sabor seleccionado: Vainilla</li>
+                            <li>Adorno: Velas</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">GL-2022-085</td>
+                    <td align="center">06/03/2022</td>
+                    <td>Pastel clásico</td>
+                    <td>
+                        Rodrigo Mendoza
+                        <br />
+                        Tel. 55 65684521
+                        <br />
+                        rodmend@hotmail.com
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Sabor seleccionado: Chocolate</li>
+                            <li>Adorno: Crema chantilly</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        <br />
+        Cerrar sesión
+        <br />
+        Pastelería Glass
+        <br />
+        Avenida Siempre viva 742, CP 01000 Ciudad de México
+        <br />
+        Tel. 55 10 00 01 55
+        <br />
+        Horarios de atención: Lunes a Domingo de 9:00 a 19:00 horas.
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loadEl = document.querySelector('#load');
+            // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+            // // The Firebase SDK is initialized and available here!
+            //
+            // firebase.auth().onAuthStateChanged(user => { });
+            // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+            // firebase.firestore().doc('/foo/bar').get().then(() => { });
+            // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+            // firebase.messaging().requestPermission().then(() => { });
+            // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+            // firebase.analytics(); // call to activate
+            // firebase.analytics().logEvent('tutorial_completed');
+            // firebase.performance(); // call to activate
+            //
+            // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+            try {
+                let app = firebase.app();
+                let features = [
+                    'auth',
+                    'database',
+                    'firestore',
+                    'functions',
+                    'messaging',
+                    'storage',
+                    'analytics',
+                    'remoteConfig',
+                    'performance',
+                ].filter(feature => typeof app[feature] === 'function');
+                loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+            } catch (e) {
+                console.error(e);
+                loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+            }
+        });
+    </script>
+</body>
+</html>
